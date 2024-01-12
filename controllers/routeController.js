@@ -363,7 +363,7 @@ const decreaseCartItemAmount = asyncHandler(async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
-});
+})
 
 //delete item in cart
 const deleteCartItem = asyncHandler ( async (req, res) => {
@@ -482,7 +482,7 @@ const payment = asyncHandler(async (req, res) => {
         res.status(500);
         throw new Error(error.message);
     }
-});
+})
 
 //update payment status
 const updatePaymentStatus = asyncHandler(async (req, res) => {
@@ -542,14 +542,12 @@ const updatePaymentStatus = asyncHandler(async (req, res) => {
         res.status(500);
         throw new Error(error.message);
     }
-});
+})
 
 // Transfer payment to a free delivery man
 const transferPaymentToDeliveryMan = asyncHandler(async (req, res) => {
     try {
         const { freakId, deliveryManId } = req.body;
-
-        console.log(freakId, deliveryManId);
 
         if (!freakId || !deliveryManId) {
             res.status(400);
@@ -601,7 +599,7 @@ const transferPaymentToDeliveryMan = asyncHandler(async (req, res) => {
         res.status(500);
         throw new Error(error.message);
     }
-});
+})
 
 //add on selected payment to delivery man
 const updatePayMentStatusByDeliveryMan = asyncHandler(async (req, res) => {
@@ -654,7 +652,7 @@ const updatePayMentStatusByDeliveryMan = asyncHandler(async (req, res) => {
         res.status(500);
         throw new Error(error.message);
     }
-});
+})
 
 //update delivery working status
 const updateWorkingStatus = asyncHandler(async (req, res) => {
@@ -676,8 +674,6 @@ const updateWorkingStatus = asyncHandler(async (req, res) => {
         user.delivery[0].workingStatus = workingStatus;
 
         await user.save();
-
-        console.log(user.delivery[0].workingStatus);
 
         res.status(200).json({ message: "Working status updated" });
     } catch (error) {
@@ -817,5 +813,3 @@ module.exports = {
     superAdminUpdateRole,
     superAdminAddBrand
 }
-
-
