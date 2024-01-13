@@ -25,6 +25,14 @@ connectDB()
 
 const app = express()
 
+// Set security headers
+app.use((req, res, next) => {
+    res.header("X-Content-Type-Options", "nosniff");
+    res.header("X-Frame-Options", "DENY");
+    res.header("Content-Security-Policy", "frame-ancestors 'none'");
+    next();
+});
+
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors(corsOptions))

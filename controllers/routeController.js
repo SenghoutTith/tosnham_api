@@ -68,7 +68,7 @@ const registerUser = asyncHandler ( async (req, res) => {
                 path: "/",
                 httpOnly: true,
                 expires: new Date(Date.now() + 1000 * 86400), // set expire to 1day after created new user
-                sameSite: "strict",
+                sameSite: "None",
                 secure: true
             })
             res.status(201).json({_id, name, email, phonenumber, photo, role, street, city, token})
@@ -101,7 +101,7 @@ const loginUser = asyncHandler ( async (req, res) => {
                 path: "/",
                 httpOnly: true,
                 expires: new Date(Date.now() + 1000 * 86400), // set expire to 1day after created new user
-                sameSite: "strict",
+                sameSite: "None",
                 secure: true
             })
             res.status(200).json(user)
@@ -121,7 +121,7 @@ const logoutUser = asyncHandler ( async (req, res) => {
             path: "/",
             httpOnly: true,
             expires: new Date(0), // set expire to now
-            sameSite: "strict",
+            sameSite: "None",
             secure: true
         })
         res.status(200).json({message: "Logout success..."})
