@@ -17,6 +17,7 @@ const port =  5001
 const corsOptions = {
     origin: [process.env.Frontend || "https://tos-nham.vercel.app"],
     credentials: true,
+    exposedHeaders: ["set-cookie"],
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
