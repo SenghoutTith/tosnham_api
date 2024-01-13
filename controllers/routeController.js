@@ -99,7 +99,7 @@ const loginUser = asyncHandler ( async (req, res) => {
         if (user && isPasswordCorrect) {
             res.cookie("token", token, {
                 path: "/",
-                httpOnly: true,
+                httpOnly: false,
                 expires: new Date(Date.now() + 1000 * 86400), // set expire to 1day after created new user
                 sameSite: "None",
                 secure: true
