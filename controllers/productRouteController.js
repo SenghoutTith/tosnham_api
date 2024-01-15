@@ -124,56 +124,10 @@ const updateProduct = async (req, res) => {
     }
 };
 
-const ratingProduct = asyHandler ( async (req, res) => {
-
-    const {id} = req.params
-
-    const {star, review, reviewDate} = req.body
-
-    if(star < 1 || !review){
-        res.status(400)
-        throw new Error("Please add a star rating and review")
-    }
-
-    const product = await Product.findById(id)
-
-    if(!product){
-        res.status(404)
-        throw new Error("Product not found...")
-    }
-
-    product.rating.push({star, review, reviewDate, name: req.user.name, userID: req.user._id})
-    product.save()
-    res.status(201).json({message: "Product rating updated successfully..."})
-})
-
-const deleteRatingProduct = asyHandler ( async (req, res) => {
-
-    const {id} = req.params
-
-    const {userID} = req.body
-
-    const product = await Product.findById(id)
-
-    if(!product){
-        res.status(404)
-        throw new Error("Product not found...")
-    }
-
-    const newRating = product.rating.filter((rate) =>{
-        return rate.userID.toString() !== userID.toString()
-    })
-    product.rating = newRating
-    product.save()
-    res.status(201).json({message: "Product rating deleted successfully..."})
-})
-
 module.exports = { 
     getAllProduct,
     createProduct,
     getProductById,
     deleteProduct,
     updateProduct,
-    ratingProduct,
-    deleteRatingProduct
 }
